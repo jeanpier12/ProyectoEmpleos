@@ -22,6 +22,8 @@ public class CategoriasControler {
 	@Autowired
 	//aca tenemos la instacia de nuestra clase de servicio 
 	//en este caso se llama serviceVacantes
+	
+	//En este momento tengo dos clases que implemente de esta misma interfaz por eso me ocaciono un problema 
 	private ICategoriasService serviceCategorias;
  
 	@GetMapping("/index")

@@ -2,10 +2,26 @@ package com.job.job.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+//entity sirve para crear el repositorio de esta clase
+@Entity 
+//aca le indicamos con que tabla de la base de datos va a tener concencion esta clase del modelo
+@Table(name= "Vacantes")
 //Se creo la clase Vacante 
 //una clse es una platilla que me permite crear objetos 
 public class Vacante {
 
+	//configurando cual sera la llave primaria
+	@Id
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
    private Integer id;
    private String nombre;
    private String descripcion;
@@ -15,6 +31,17 @@ public class Vacante {
    private String imagen="no-image.png";
    private String estatus;
    private String detalles ;
+   
+   //con esta anotación le estamos diciendo que se ignore el mapeo  esta propiedad 
+   //@Transient
+   
+   //con esta anotacion estamos indicando una relacion de 1 a 1 
+   //entre nuestra clase de modelo vacante y la clase de modelo categorias 
+   @OneToOne
+   
+   //con esta anotación vamos a indicar la columna con la que se maraca la relacion entre las 2 tablas 
+   //como parametro de esta anotacion debe estar el nombre de la columna que relaciona estas 2 tabalas 
+   @JoinColumn(name ="idCategoria")
    private Categoria categoria;
    
    

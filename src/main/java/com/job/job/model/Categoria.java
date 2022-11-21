@@ -1,7 +1,19 @@
 package com.job.job.model;
 
-public class Categoria {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+//anotación que conecta esta clase con la tabla categorias
+@Table(name="Categorias")
+public class Categoria {
+	//anotacion para indicar ques este sera el id 
+    @Id
+    //anotación para generar autoingrementables
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	private String descripcion;
