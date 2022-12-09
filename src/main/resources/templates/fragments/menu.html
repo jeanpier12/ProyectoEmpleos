@@ -6,17 +6,28 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="/vacantes/index">Vacantes</a>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+              <a class="nav-link " th:href="@{/vacantes/index}">Vacantes</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/index">Categorias</a>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+              <a class="nav-link" th:href="@{/categorias/index}">Categorias</a>
             </li>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+              <a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
+            </li> 
             <li class="nav-item">
-              <a class="nav-link" href="#">menu2</a>
-            </li>          
-          </ul>  
-          <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-          <a class="btn btn-primary" href="#">Registrarse</a>
+                <a class="nav-link" th:href="@{/about}">Acerca</a>
+            </li>  
+                     
+          </ul> 
+          <div sec:authorize="isAnonymous()"> 
+          <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/registro}">Registrarse</a>&nbsp;
+          </div>&nbsp;
+          
+          <div sec:authorize="isAuthenticated()"> 
+            <span class="text-light">Bienvenido</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;
+            <a class="btn btn-primary"  th:href="@{/logout}"  >Salir</a>
+          </div>
         </div>
       </nav>

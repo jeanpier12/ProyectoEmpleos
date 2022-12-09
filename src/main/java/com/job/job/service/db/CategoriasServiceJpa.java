@@ -13,7 +13,7 @@ import com.job.job.service.ICategoriasService;
 
 @Service
 //con esta anotación le estamos diciendo a spring que en nuestro controlador 
-//vuando se inyecte una instancia a una variable como va a encontrar 2 
+//cuando se inyecte una instancia a una variable como va a encontrar 2 
 //le estamos diciendo utiliza esta 
 @Primary
 public class CategoriasServiceJpa implements ICategoriasService {
@@ -34,8 +34,8 @@ public class CategoriasServiceJpa implements ICategoriasService {
 	}
 
 	@Override
+	//este metodo me muestra la lista de categorias que se encuentra en bd
 	public List<Categoria> buscarTodas() {
-		// TODO Auto-generated method stub
 		return categoriasRepo.findAll();
 	}
 
@@ -49,6 +49,12 @@ public class CategoriasServiceJpa implements ICategoriasService {
 		
 	}
 		return null;
+	}
+
+	@Override
+	public void eliminar(Integer idCategoria) {
+		categoriasRepo.deleteById(idCategoria);
+		
 	}
 
 }

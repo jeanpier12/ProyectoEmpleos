@@ -17,4 +17,5 @@ public interface VacantesRepository extends JpaRepository<Vacante, Integer> {
 	// en el parametro = podemos definir cualquier tipo de dato y cualquier nombre
 	List<Vacante> findByEstatus(String estatus);
 	
+	List<Vacante> findByDestacadoAndEstatusOrderByIdDesc(int destacado , String estatus);
 }

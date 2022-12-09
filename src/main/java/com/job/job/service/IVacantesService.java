@@ -1,6 +1,9 @@
 package com.job.job.service;
 
 import java.util.List;
+
+import org.springframework.data.domain.Example;
+
 //se importa este paguete y su clase para que se puede utilizar la clase Vacante
 import com.job.job.model.Vacante;
 
@@ -19,5 +22,12 @@ public interface IVacantesService {
 	//de la bacante
 	//este metodo recibira como parametro un objeto de la clase vacante
 	void guardar(Vacante vacante);
+	
+	//este metodo devolvera una lista de objetos de tipo vacante
+	List<Vacante> buscarDestacadas(); 
+	//este metodo elimina un usuario por su id
+	void eliminar(Integer idVacante);
+	//metodo que se encarga de hacer el filtro en la base de datos  
+	List<Vacante> buscarByExample(Example<Vacante> example);
 	
 }

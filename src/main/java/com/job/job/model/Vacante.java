@@ -28,6 +28,7 @@ public class Vacante {
    private Date fecha;
    private Double salario;
    private Integer destacado;
+   //aca se guarda el nombre de la imagen en string
    private String imagen="no-image.png";
    private String estatus;
    private String detalles ;
@@ -42,6 +43,7 @@ public class Vacante {
    //con esta anotación vamos a indicar la columna con la que se maraca la relacion entre las 2 tablas 
    //como parametro de esta anotacion debe estar el nombre de la columna que relaciona estas 2 tabalas 
    @JoinColumn(name ="idCategoria")
+   //aca categoria es una propiedad a a su vez es una clase 
    private Categoria categoria;
    
    
@@ -111,6 +113,12 @@ public Categoria getCategoria() {
 public void setCategoria(Categoria categoria) {
 	this.categoria = categoria;
 }
+
+public void reset() {
+	
+	this.imagen=null;
+}
+
 @Override
 public String toString() {
 	return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha

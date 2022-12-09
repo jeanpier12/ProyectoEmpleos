@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,10 +24,12 @@ public class CategoriasControler {
 	//aca tenemos la instacia de nuestra clase de servicio 
 	//en este caso se llama serviceVacantes
 	
-	//En este momento tengo dos clases que implemente de esta misma interfaz por eso me ocaciono un problema 
+	//En este momento tengo dos clases que implemente de esta misma interfaz ya que para instanciar esta interfaz
+	// llamara una de las clases que implementan de esta interfs para crear un objeto en esta ocacion tengo 2 clases
+	//por eso me ocaciono un problema 
 	private ICategoriasService serviceCategorias;
  
-	@GetMapping("/index")
+	@GetMapping("/categorias/index")
   	public String mostrarIndex(Model model) {
 		//aca e creado una lista de objetos que contendran atributos de la clase categoria 
 		//esta lista guardara los objetos que contenga el metodo buscarTodas
@@ -44,6 +47,22 @@ public class CategoriasControler {
 		//me muestra la vista del formulario para crear una nueva categoria 
 		return "categorias/formCategoria";
 	}
+	
+	
+	
+	//muestra la paguina del formulario de categorias 
+	@GetMapping("/categorias/edit/{id}")
+	public String editar(@PathVariable ("id") int idCategoria , Model model ) {
+		
+
+		Categoria categoria =serviceCategorias.buscarPorId(idCategoria);
+
+		model.addAttribute("categoria", categoria);
+		
+	return "categorias/formCategoria";
+		
+	}
+	
 	
 	@PostMapping("/save")
 	//este metodo guarda el valor que se ingresa en el imput y el text area
@@ -72,8 +91,18 @@ public class CategoriasControler {
 		attributes.addFlashAttribute("msg", "Resgistro Guardado");
 		System.out.println("Categorias:" + categoria);
 		//redirect me redireciona osea puedo llamar otras url 
-		return "redirect:/index";
+		return "redirect:/categorias/index";
 		
+	}
+	
+	@GetMapping("categorias/delete/{id}")
+	public String eliminar( @PathVariable("id")  int idCategoria , Model model,RedirectAttributes attributes) {
+		System.out.println("Borrando vacante con id :" + idCategoria)	;
+		attributes.addFlashAttribute("msg", "eliminacion exitosa");
+		serviceCategorias.eliminar(idCategoria);
+		
+
+		return "redirect:/categorias/index";
 	}
 		
 		

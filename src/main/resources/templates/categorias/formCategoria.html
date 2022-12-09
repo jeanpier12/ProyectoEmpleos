@@ -30,18 +30,16 @@
           <div class="card-body">
          <!-- el action activa una petición post a la url localhost:8080/save -->
             <form th:action="@{/save}" method="post" th:object="${categoria}"> 
-            <div th:if="${#fields.hasErrors('*')}" class="alert alert-dange" role="alert">
-                  Por favor corrija los siguientes errores:
-                   <ul>
-                   <li th:each="err: ${#fields.errors('*')}" th:text="${err}"/>
-                   </ul>
-                  </div>   
+            
                         
               <div class="row">
                 <div class="col-md-6"> 
                   <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escriba el nombre de la categoria" required="required">
+                    <label for="nombre" >Nombre</label>
+                    <input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre" placeholder="Escriba el nombre de la categoria" required="required">
+                     <!--en este input invidible estamos guardando el valor 
+                    de la id de la vacante-->
+                    <input type="hidden" th:field="*{id}"  >
                   </div>
                 </div>                
               </div> 
@@ -49,7 +47,7 @@
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" name="descripcion" id="descripcion" rows="2"></textarea>
+                    <textarea th:field="*{descripcion}" class="form-control" name="descripcion" id="descripcion" rows="2"></textarea>
                   </div> 
                 </div>                
               </div> 

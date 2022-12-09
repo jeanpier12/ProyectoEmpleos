@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.job.job.model.Categoria;
 @Service
+//esta clase usa los metodos de la otra interfaz
 public class CategoriasServiceImpl implements ICategoriasService {
  
 	//se esta guardando en una lista las categoprias 
@@ -102,6 +103,17 @@ public class CategoriasServiceImpl implements ICategoriasService {
 			}
 		}		
 		return null;	
+	}
+
+
+
+
+
+
+	@Override
+	public void eliminar(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

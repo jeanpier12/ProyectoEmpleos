@@ -30,7 +30,7 @@
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
           <!-- aca colocamos la url a la cual se va a enviar los datos del  formulario-->
-            <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data"> 
+            <form th:action="@{/vacantes/save}"    th:object="${vacante}"  method="post" enctype="multipart/form-data"> 
                   <div th:if="${#fields.hasErrors('*')}" class="alert alert-dange" role="alert">
                   Por favor corrija los siguientes errores:
                    <ul>
@@ -41,6 +41,12 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
+                    <!--en este input invidible estamos guardando el valor 
+                    de la id de la vacante-->
+                    <input type="hidden" th:field="*{id}">
+                    <!--  aca se esta enviando el vlor de la imagen en caso no seseccionemos una imagen que se guarde 
+                    con el valor que ya tenia  -->
+                     <input type="hidden" th:field="*{imagen}">
                     <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
@@ -88,7 +94,7 @@
                     <label class="form-check-label" for="destacado1">Destacado</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{nombre}" name="destacado" id="destacado" value="0">
+                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
                     <label class="form-check-label" for="destacado2">No Destacado</label>
                   </div>
                 </div>
@@ -117,7 +123,7 @@
                 </div> 
                 <div class="col-md-3">
                   <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" src="images/construccion-logo.png" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block"  th:src="@{/logos/{img} (img=${vacante.imagen}) }"  alt="Generic placeholder image" width="200" height="200">            
                 </div>
               </div> 
               <button type="submit" class="btn btn-primary">Guardar</button>  
