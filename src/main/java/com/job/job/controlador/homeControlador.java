@@ -1,7 +1,7 @@
 package com.job.job.controlador;
 
 import java.util.Date;
-import java.util.LinkedList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -213,17 +213,28 @@ public class homeControlador {
 	   	public String encriptar(@PathVariable("texto") String texto) {    	
 	   		return texto + " Encriptado en Bcrypt: " + passwordEncoder.encode(texto);
 	   	}
+	    
+	    
+	    
+	    /**
+		 * Método que muestra el formulario de login personalizado.
+		 * @return
+		 */
+		@GetMapping("/login")
+		public String mostrarLogin() {
+			return "formLogin";
+		}
 		
 	
 	//este metodo se utiliza para que ya no me salga una ventana emergente para 
 		//cerrar sesion sino qie defrente te manda ala la paguina de inicio 
-	/**	@GetMapping("/logout")
+		@GetMapping("/logout")
 		public String logout(HttpServletRequest request) {
 			SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 			logoutHandler.logout(request, null, null);
 			return "redirect:/";
 		}
-	 */
+
 	  
 	
 	

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 		//e inyecta el valor en la variable rutasImagenes
 		@Value("${empleosapp.ruta.imagenes}")
 		private String rutaImagenes;
+		@Value("${empleosapp.ruta.cv}")
+		private String rutaCv;
 
 		//este metodo sirve oara agregar directorios recursos a nuestro proyecto
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -23,6 +25,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 			//logo el alias de nuestra ruta  osea al apuntar a logos estamos apuntando a la ruta donde 
 			 ///se guardan las imagenes 
 			registry.addResourceHandler("/logos/**").addResourceLocations("file:" + rutaImagenes); 
+			
+			
+			// Configuración de los recursos estáticos (archivos de los CV)
+			//registry.addResourceHandler("/cv/**").addResourceLocations("file:c:/empleos/files-cv/"); // Windows
+			//registry.addResourceHandler("/cv/**").addResourceLocations("file:/empleos/files-cv/");
+			registry.addResourceHandler("/cv/**").addResourceLocations("file:"+rutaCv); // Linux
 		}
 	}
 	

@@ -21,6 +21,7 @@
                      
           </ul> 
           <div sec:authorize="isAnonymous()"> 
+          <!--como la url index no esta permitodo automaticamente se nos esta redirigiendo al /login   -->
           <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
           <a class="btn btn-primary" th:href="@{/registro}">Registrarse</a>&nbsp;
           </div>&nbsp;

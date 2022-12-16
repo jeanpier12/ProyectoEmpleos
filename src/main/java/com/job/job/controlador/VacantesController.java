@@ -185,7 +185,7 @@ public void setGenericos(Model model) {
 	
 }
 
-//con esto estoy corriguiendo los herrores de formato de fecha 
+//con esto estoy corriguiendo los errores de formato de fecha 
 @InitBinder
 public void initBinder(WebDataBinder webDataBinder) {
 	

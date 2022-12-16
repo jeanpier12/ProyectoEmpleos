@@ -29,9 +29,6 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		"where u.username = ?");
 
 }
-
-
-
 @Override
 protected void configure(HttpSecurity http) throws Exception {
 	http.authorizeRequests()
@@ -51,15 +48,25 @@ protected void configure(HttpSecurity http) throws Exception {
 		"/view/{id}/**").permitAll()
 	
 	// Asignar permisos a URLs por ROLES estas Url NO se llamaran a menos que se lo llame teniendo los siguientes roles 
-	.antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR","USUARIO")
-	.antMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR","USUARIO") 
-	.antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR","USUARIO")
+	
+	 // Asignar permisos a URLs por ROLES
+    .antMatchers("/solicitudes/create/**",
+    			 "/solicitudes/save/**").hasAuthority("USUARIO")
+    .antMatchers("/solicitudes/**").hasAnyAuthority("ADMINISTRADOR,SUPERVISOR")
+	.antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
+	.antMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR") 
+	.antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
+	
+
 
 		
 	// Todas las demás URLs de la Aplicación requieren autenticación
 	.anyRequest().authenticated()
 	// El formulario de Login no requiere autenticacion
-	.and().formLogin().permitAll();
+    
+    //o lo que hace es realisa usa solicitud  la url login 
+    .and().formLogin().loginPage("/login").permitAll()  ;
+
 }
 /**
  *  Implementación de Spring Security que encripta passwords con el algoritmo Bcrypt

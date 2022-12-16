@@ -10,10 +10,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>net.itinajero</groupId>
-	<artifactId>empleos</artifactId>
+	<groupId>com.job</groupId>
+	<artifactId>job</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>empleos</name>
+	<packaging>jar</packaging>
 	<description>APLICACION PARA PUBLICAR OFERTAS DE TRABAJO EN INTERNET (EMPLEOSAPP)</description>
 
 	<properties>

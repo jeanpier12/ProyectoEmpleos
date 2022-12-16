@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Perfiles")
 public class Perfil {
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment MySQL

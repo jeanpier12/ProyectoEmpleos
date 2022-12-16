@@ -1,3 +1,4 @@
+
 package com.job.job.controlador;
 
 import java.util.List;
@@ -47,6 +48,27 @@ public class UsuariosControler {
 
 			return "redirect:/usuarios/index";
 		   }
+	  
+	  @GetMapping("/usuarios/unlock/{id}")
+		public String activar(@PathVariable("id") int idUsuario, RedirectAttributes attributes) {		
+	    	serviceUsuarios.activar(idUsuario);
+			attributes.addFlashAttribute("msg", "El usuario fue activado y ahora tiene acceso al sistema.");		
+			return "redirect:/usuarios/index";
+		}
+	    
+		/**
+		 * Método para bloquear un usuario
+		 * @param idUsuario
+		 * @param attributes
+		 * @return
+		 */
+		@GetMapping("/usuarios/lock/{id}")
+		public String bloquear(@PathVariable("id") int idUsuario, RedirectAttributes attributes) {		
+			serviceUsuarios.bloquear(idUsuario);
+			attributes.addFlashAttribute("msg", "El usuario fue bloqueado y no tendra acceso al sistema.");		
+			return "redirect:/usuarios/index";
+		}
+
 	  
 	  
 }
